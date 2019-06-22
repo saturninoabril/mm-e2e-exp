@@ -1,0 +1,18 @@
+{
+  "name": "mm-e2e-exp",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@testing-library/cypress": "4.0.3",
+    "axios": "0.18.1",
+    "cypress": "3.3.1",
+    "cypress-file-upload": "3.1.2",
+    "cypress-plugin-retries": "1.2.2",
+    "merge-deep": "3.0.2"
+  },
+  "scripts": {
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
+    "mmjstool": "mmjstool"
+  }
+}
