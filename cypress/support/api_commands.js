@@ -303,8 +303,6 @@ Cypress.Commands.add('createNewUser', (user = {}, teamIds = []) => {
 
         cy.apiSaveUserPreference(preferences, userId);
 
-        cy.apiLogout();
-
         // Wrap our user object so it gets returned from our cypress command
         cy.wrap({email, username, password, id: userId});
     });
