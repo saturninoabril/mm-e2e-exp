@@ -27,7 +27,7 @@ jobs:
           paths:
             - .cache
             - tmp
-  test_account-settings:
+  test_account_settings:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -37,10 +37,70 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la cypress
-      - run: ls -la cypress/integration
+      - run: ls -la cypress/integration/account_settings
       - run:
           name: Running cypress tests
           command: $(npm bin)/cypress run --spec 'cypress/integration/account_settings/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_at_mentions:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/at_mentions
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/at_mentions/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_channel:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/channel
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/channel/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_email:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/email
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/email/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
@@ -53,6 +113,15 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_account-settings:
+      - test_account_settings:
+          requires:
+            - build
+      - test_at_mentions:
+          requires:
+            - build
+      - test_channel:
+          requires:
+            - build
+      - test_email:
           requires:
             - build
