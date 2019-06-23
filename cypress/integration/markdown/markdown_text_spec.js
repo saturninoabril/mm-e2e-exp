@@ -66,25 +66,4 @@ describe('Markdown message', () => {
             cy.compareLastPostHTMLContentFromFile(`markdown/${testCase.fileKey}.html`);
         });
     });
-
-    describe('with images', () => {
-        const tests = [
-            {name: 'Markdown - in-line images 1', fileKey: 'markdown_inline_images_1'},
-            {name: 'Markdown - in-line images 2', fileKey: 'markdown_inline_images_2'},
-            {name: 'Markdown - in-line images 3 (Gif)', fileKey: 'markdown_inline_images_3'},
-            {name: 'Markdown - in-line images 4 (4k)', fileKey: 'markdown_inline_images_4'},
-            {name: 'Markdown - in-line images 5 (Panorama)', fileKey: 'markdown_inline_images_5'},
-        ];
-
-        tests.forEach((test) => {
-            it(test.name, () => {
-                // #  Post markdown message
-                cy.postMessageFromFile(`markdown/${test.fileKey}.md`);
-
-                // * Verify that HTML Content is correct.
-                // Note we use the Gigantic timeout to ensure that the large images will load
-                cy.compareLastPostHTMLContentFromFile(`markdown/${test.fileKey}.html`, TIMEOUTS.GIGANTIC);
-            });
-        });
-    });
 });
