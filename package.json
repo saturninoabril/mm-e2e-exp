@@ -12,7 +12,6 @@
   },
   "scripts": {
     "cypress:run": "cypress run",
-    "cypress:open": "cypress open",
-    "mmjstool": "mmjstool"
+    "cypress:open": "cypress open"
   }
 }

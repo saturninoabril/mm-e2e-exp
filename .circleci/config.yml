@@ -27,7 +27,7 @@ jobs:
           paths:
             - .cache
             - tmp
-  test:
+  test_account-settings:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -40,7 +40,7 @@ jobs:
       - run: ls -la cypress/integration
       - run:
           name: Running cypress tests
-          command: $(npm bin)/cypress run
+          command: $(npm bin)/cypress run --spec 'cypress/integration/account_settings/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
@@ -53,6 +53,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - test_account-settings:
           requires:
             - build

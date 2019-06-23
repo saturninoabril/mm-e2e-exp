@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="16.144" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2019-06-22T23:18:16" tests="0" failures="0" time="0">
+  </testsuite>
+  <testsuite name="Account Settings &gt; Display &gt; Channel Display Mode" timestamp="2019-06-22T23:18:16" tests="4" failures="0" time="16.144">
+    <testcase name="Account Settings &gt; Display &gt; Channel Display Mode should render in min setting view" time="10.146" classname="should render in min setting view">
+    </testcase>
+    <testcase name="Account Settings &gt; Display &gt; Channel Display Mode should render in max setting view" time="0.523" classname="should render in max setting view">
+    </testcase>
+    <testcase name="Account Settings &gt; Display &gt; Channel Display Mode change channel display mode setting to &quot;Full width&quot;" time="0.747" classname="change channel display mode setting to &quot;Full width&quot;">
+    </testcase>
+    <testcase name="Account Settings &gt; Display &gt; Channel Display Mode AS13225 Channel display mode setting to &quot;Fixed width, centered&quot;" time="4.728" classname="AS13225 Channel display mode setting to &quot;Fixed width, centered&quot;">
+    </testcase>
+  </testsuite>
+</testsuites>
