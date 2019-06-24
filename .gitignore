@@ -3,3 +3,4 @@ node_modules
 # cypress artifacts
 cypress/screenshots
 cypress/videos
+results

@@ -353,51 +353,51 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_account_settings:
-          requires:
-            - build
-      - test_at_mentions:
-          requires:
-            - build
-      - test_channel:
-          requires:
-            - build
-      - test_email:
-          requires:
-            - build
-      - test_emoji:
-          requires:
-            - build
-      - test_integrations:
-          requires:
-            - build
-      - test_login:
-          requires:
-            - build
-      - test_markdown_image_1:
-          requires:
-            - build
-      - test_markdown_image_2:
-          requires:
-            - build
-      - test_markdown_text:
-          requires:
-            - build
-      - test_onboarding:
-          requires:
-            - build
-      - test_post_header:
-          requires:
-            - build
-      - test_search:
-          requires:
-            - build
-      - test_signin_authentication:
-          requires:
-            - build
-      - test_system_console:
-          requires:
-            - build
       - test_team:
           requires:
             - build
+      - test_account_settings:
+          requires:
+            - test_team
+      - test_at_mentions:
+          requires:
+            - test_team
+      - test_channel:
+          requires:
+            - test_team
+      - test_email:
+          requires:
+            - test_team
+      - test_emoji:
+          requires:
+            - test_team
+      - test_integrations:
+          requires:
+            - test_team
+      - test_login:
+          requires:
+            - test_team
+      - test_markdown_image_1:
+          requires:
+            - test_team
+      - test_markdown_image_2:
+          requires:
+            - test_team
+      - test_markdown_text:
+          requires:
+            - test_team
+      - test_onboarding:
+          requires:
+            - test_team
+      - test_post_header:
+          requires:
+            - test_team
+      - test_search:
+          requires:
+            - test_team
+      - test_signin_authentication:
+          requires:
+            - test_team
+      - test_system_console:
+          requires:
+            - test_team
