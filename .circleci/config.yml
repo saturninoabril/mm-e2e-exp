@@ -359,6 +359,9 @@ workflows:
       - test_onboarding:
           requires:
             - build
+      - test_system_console:
+          requires:
+            - build
       - test_account_settings:
           requires:
             - test_team
@@ -396,8 +399,5 @@ workflows:
           requires:
             - test_team
       - test_signin_authentication:
-          requires:
-            - test_team
-      - test_system_console:
           requires:
             - test_team
