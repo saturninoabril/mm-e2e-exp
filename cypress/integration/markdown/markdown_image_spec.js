@@ -12,6 +12,11 @@
 import * as TIMEOUTS from '../../fixtures/timeouts';
 
 describe('Markdown', () => {
+    before(() => {
+        cy.apiLogin('user-1');
+        cy.visit('/');
+    });
+
     const tests = [
         {name: 'with in-line images 1', fileKey: 'markdown_inline_images_1'},
         {name: 'with in-line images 2', fileKey: 'markdown_inline_images_2'},
