@@ -367,7 +367,7 @@ workflows:
             - test_team
       - test_at_mentions:
           requires:
-            - test_team
+            - build
       - test_channel:
           requires:
             - test_team
