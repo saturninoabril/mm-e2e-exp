@@ -123,6 +123,8 @@ describe('Teams Suite', () => {
     });
 
     it('TS14633 Leave all teams', () => {
+        cy.apiUpdateConfig({EmailSettings: {RequireEmailVerification: false}});
+
         // # Login as new user
         cy.loginAsNewUser();
 
