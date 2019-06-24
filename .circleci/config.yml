@@ -374,7 +374,10 @@ workflows:
       - test_login:
           requires:
             - build
-      - test_markdown_image:
+      - test_markdown_image_1:
+          requires:
+            - build
+      - test_markdown_image_2:
           requires:
             - build
       - test_markdown_text:
