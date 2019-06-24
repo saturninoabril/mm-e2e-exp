@@ -167,7 +167,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-  test_markdown_image:
+  test_markdown_image_1:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -177,10 +177,30 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la cypress
-      - run: ls -la cypress/integration/markdown/markdown_image_spec.js
+      - run: ls -la cypress/integration/markdown/markdown_image_1_spec.js
       - run:
           name: Running cypress tests
-          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/markdown_image_spec.js'
+          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/markdown_image_1_spec.js'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_markdown_image_2:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/markdown/markdown_image_2_spec.js
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/markdown_image_2_spec.js'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
