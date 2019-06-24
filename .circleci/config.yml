@@ -356,6 +356,9 @@ workflows:
       - test_team:
           requires:
             - build
+      - test_onboarding:
+          requires:
+            - build
       - test_account_settings:
           requires:
             - test_team
@@ -384,9 +387,6 @@ workflows:
           requires:
             - test_team
       - test_markdown_text:
-          requires:
-            - test_team
-      - test_onboarding:
           requires:
             - test_team
       - test_post_header:
