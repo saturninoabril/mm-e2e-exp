@@ -282,7 +282,7 @@ Cypress.Commands.add('apiSaveThemePreference', (value = JSON.stringify(theme.def
 Cypress.Commands.add('createNewUser', (user = {}, teamIds = []) => {
     const timestamp = Date.now();
 
-    const {email = `newe2etestuser${timestamp}@sample.mattermost.com`, username = `NewE2ETestUser${timestamp}`, password = 'password123'} = user;
+    const {email = `user${timestamp}@sample.mattermost.com`, username = `user${timestamp}`, password = 'password123'} = user;
 
     // # Login as sysadmin to make admin requests
     cy.apiLogin('sysadmin');
