@@ -66,7 +66,7 @@ describe('Markdown message', () => {
         });
     });
 
-    it.only('Markdown - block quotes 2', () => {
+    it('Markdown - block quotes 2', () => {
         const baseUrl = Cypress.config('baseUrl');
         const expectedHtml = `<h3 class="markdown__heading">Block Quotes</h3><p><strong>The following markdown should render within the block quote:</strong></p>
 <blockquote>

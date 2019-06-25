@@ -359,18 +359,21 @@ workflows:
       - test_at_mentions:
           requires:
             - test_account_settings
+      - test_markdown_text:
+          requires:
+            - test_account_settings
       - test_team:
           requires:
-            - test_at_mentions
+            - test_markdown_text
       - test_onboarding:
           requires:
-            - test_at_mentions
+            - test_markdown_text
       - test_system_console:
           requires:
-            - test_at_mentions
+            - test_markdown_text
       - test_signin_authentication:
           requires:
-            - test_at_mentions
+            - test_markdown_text
       - test_channel:
           requires:
             - test_team
@@ -390,9 +393,6 @@ workflows:
           requires:
             - test_team
       - test_markdown_image_2:
-          requires:
-            - test_team
-      - test_markdown_text:
           requires:
             - test_team
       - test_post_header:
