@@ -400,4 +400,4 @@ workflows:
             - test_team
       - test_signin_authentication:
           requires:
-            - test_team
+            - build
