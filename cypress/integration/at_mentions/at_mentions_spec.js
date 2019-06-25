@@ -119,7 +119,6 @@ describe('at-mention', () => {
         const message = `@${this.receiver.username} I'm messaging you! ${Date.now()}`;
 
         // # Use another account to post a message @-mentioning our receiver
-        console.log('baseUrl:', baseUrl);
         cy.task('postMessageAs', {sender: this.sender, message, channelId: this.channelId, baseUrl});
 
         const body = `@${this.sender.username}: ${message}`;
@@ -130,6 +129,7 @@ describe('at-mention', () => {
         cy.get('#publicChannel').scrollIntoView();
 
         cy.get('#sidebarItem_town-square').
+            scrollIntoView().
             find('#unreadMentions').
             should('be.visible').
             and('have.text', '1');
