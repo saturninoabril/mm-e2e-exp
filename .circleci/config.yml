@@ -353,9 +353,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_at_mentions:
+      - test_account_settings:
           requires:
             - build
+      - test_at_mentions:
+          requires:
+            - test_account_settings
       - test_team:
           requires:
             - test_at_mentions
@@ -368,9 +371,6 @@ workflows:
       - test_signin_authentication:
           requires:
             - test_at_mentions
-      - test_account_settings:
-          requires:
-            - test_team
       - test_channel:
           requires:
             - test_team
