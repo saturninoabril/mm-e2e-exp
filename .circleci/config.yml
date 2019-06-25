@@ -353,21 +353,24 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - test_at_mentions:
+          requires:
+            - test_at_mentions
       - test_team:
           requires:
-            - build
+            - test_at_mentions
       - test_onboarding:
           requires:
-            - build
+            - test_at_mentions
       - test_system_console:
           requires:
-            - build
+            - test_at_mentions
+      - test_signin_authentication:
+          requires:
+            - test_at_mentions
       - test_account_settings:
           requires:
             - test_team
-      - test_at_mentions:
-          requires:
-            - build
       - test_channel:
           requires:
             - test_team
@@ -398,6 +401,3 @@ workflows:
       - test_search:
           requires:
             - test_team
-      - test_signin_authentication:
-          requires:
-            - build
