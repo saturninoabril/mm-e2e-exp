@@ -267,6 +267,26 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+  test_search_0:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/search_0
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/search_0/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
   test_signin_authentication:
     working_directory: ~/tmp
     docker:
@@ -333,9 +353,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_search:
+      - test_search_0:
           requires:
             - build
+      - test_search:
+          requires:
+            - test_search_0
       - test_account_settings:
           requires:
             - test_search
