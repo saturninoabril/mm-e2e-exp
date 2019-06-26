@@ -341,25 +341,25 @@ workflows:
             - build
       - test_at_mentions:
           requires:
-            - test_account_settings
+            - test_search
       - test_markdown_text:
           requires:
-            - test_account_settings
+            - test_search
       - test_markdown_image:
           requires:
-            - test_account_settings
+            - test_search
       - test_team:
           requires:
-            - test_markdown_text
+            - test_at_mentions
       - test_onboarding:
           requires:
-            - test_markdown_text
+            - test_at_mentions
       - test_system_console:
           requires:
-            - test_markdown_text
+            - test_at_mentions
       - test_signin_authentication:
           requires:
-            - test_markdown_text
+            - test_at_mentions
       - test_channel:
           requires:
             - test_team
