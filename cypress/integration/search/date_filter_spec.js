@@ -16,6 +16,11 @@ function searchAndValidate(query, expectedResults = []) {
     // # Enter in search query, and hit enter
     cy.get('#searchBox').clear().type(query).type('{enter}');
 
+    if (expectedResults.length > 0) {
+        // * Verify that there's search item before querying by test ID
+        cy.get('.search-item__container').should('be.visible');
+    }
+
     // * Verify the amount of results matches the amount of our expected results
     cy.queryAllByTestId('search-item-container').should('have.length', expectedResults.length).then((results) => {
         if (expectedResults.length > 0) {
@@ -75,8 +80,7 @@ describe('SF15699 Search Date Filter', () => {
     const baseUrl = Cypress.config('baseUrl');
     let newAdmin;
 
-    it('builds data', () => {
-        cy.apiUpdateConfig({EmailSettings: {RequireEmailVerification: false}});
+    before(() => {
         // # Login as the sysadmin.
         cy.apiLogin('sysadmin');
 
