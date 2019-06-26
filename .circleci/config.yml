@@ -333,12 +333,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_account_settings:
-          requires:
-            - build
       - test_search:
           requires:
             - build
+      - test_account_settings:
+          requires:
+            - test_search
       - test_at_mentions:
           requires:
             - test_search
