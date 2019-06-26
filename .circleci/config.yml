@@ -336,6 +336,9 @@ workflows:
       - test_account_settings:
           requires:
             - build
+      - test_search:
+          requires:
+            - build
       - test_at_mentions:
           requires:
             - test_account_settings
@@ -373,8 +376,5 @@ workflows:
           requires:
             - test_team
       - test_post_header:
-          requires:
-            - test_team
-      - test_search:
           requires:
             - test_team
