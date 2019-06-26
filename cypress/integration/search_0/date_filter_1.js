@@ -76,6 +76,7 @@ describe('SF15699 Search Date Filter', () => {
     let newAdmin;
 
     it.only('builds data', () => {
+        cy.apiUpdateConfig({EmailSettings: {RequireEmailVerification: false}});
         // # Login as the sysadmin.
         cy.apiLogin('sysadmin');
 
