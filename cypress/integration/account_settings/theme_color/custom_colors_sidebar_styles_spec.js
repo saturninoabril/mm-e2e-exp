@@ -116,7 +116,7 @@ describe('AS14318 Theme Colors - Color Picker', () => {
     });
 
     describe('Custom - Sidebar styles target output change', () => {
-        it.only('should take effect each custom color in Channel View', () => {
+        it('should take effect each custom color in Channel View', () => {
             // * Check Sidebar Unread Text
             cy.get('.sidebar-item.unread-title').should('have.css', 'color', 'rgb(129, 65, 65)');
 
