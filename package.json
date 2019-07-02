@@ -7,7 +7,6 @@
     "axios": "0.18.1",
     "cypress": "3.3.1",
     "cypress-file-upload": "3.1.2",
-    "cypress-plugin-retries": "1.2.2",
     "merge-deep": "3.0.2"
   },
   "scripts": {
