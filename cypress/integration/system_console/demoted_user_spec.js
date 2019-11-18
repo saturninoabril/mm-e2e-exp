@@ -2,13 +2,10 @@
 // See LICENSE.txt for license information.
 
 // ***************************************************************
-// - [#] indicates a test step (e.g. 1. Go to a page)
+// - [#] indicates a test step (e.g. # Go to a page)
 // - [*] indicates an assertion (e.g. * Check the title)
 // - Use element ID when selecting an element. Create one if none.
 // ***************************************************************
-
-/*eslint max-nested-callbacks: ["error", 5]*/
-/*eslint-disable func-names*/
 
 import users from '../../fixtures/users.json';
 import * as TIMEOUTS from '../../fixtures/timeouts';
@@ -24,9 +21,7 @@ describe('System Console', () => {
 
         // # Set user to be a sysadmin, so it can access the system console
         cy.get('@newuser').then((user) => {
-            cy.task('externalRequest', {user: sysadmin, method: 'put', baseUrl, path: `users/${user.id}/roles`, data: {roles: 'system_user system_admin'}}).
-                its('status').
-                should('be.equal', 200);
+            cy.externalRequest({user: sysadmin, method: 'put', baseUrl, path: `users/${user.id}/roles`, data: {roles: 'system_user system_admin'}});
         });
 
         // # Visit a page on the system console
@@ -36,9 +31,7 @@ describe('System Console', () => {
 
         // # Change the role of the user back to user
         cy.get('@newuser').then((user) => {
-            cy.task('externalRequest', {user: sysadmin, method: 'put', baseUrl, path: `users/${user.id}/roles`, data: {roles: 'system_user'}}).
-                its('status').
-                should('be.equal', 200);
+            cy.externalRequest({user: sysadmin, method: 'put', baseUrl, path: `users/${user.id}/roles`, data: {roles: 'system_user'}});
         });
 
         // # User should get redirected to town square

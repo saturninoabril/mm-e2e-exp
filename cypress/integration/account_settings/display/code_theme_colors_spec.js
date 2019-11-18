@@ -2,12 +2,10 @@
 // See LICENSE.txt for license information.
 
 // ***************************************************************
-// - [#] indicates a test step (e.g. 1. Go to a page)
+// - [#] indicates a test step (e.g. # Go to a page)
 // - [*] indicates an assertion (e.g. * Check the title)
 // - Use element ID when selecting an element. Create one if none.
 // ***************************************************************
-
-/*eslint max-nested-callbacks: ["error", 3]*/
 
 const THEMES = [{name: 'github', backgroundColor: 'rgb(248, 248, 248)', color: 'rgb(51, 51, 51)'},
     {name: 'monokai', backgroundColor: 'rgb(39, 40, 34)', color: 'rgb(221, 221, 221)'},
@@ -72,7 +70,7 @@ describe('AS14319 Theme Colors - Code', () => {
             cy.get('#customThemes').check().should('be.checked');
 
             // # Open Center Channel Styles section
-            cy.get('#centerChannelStyles').click();
+            cy.get('#centerChannelStyles').click({force: true});
 
             // # Select custom code theme
             cy.get('#codeThemeSelect').scrollIntoView().should('be.visible').select(THEME.name);

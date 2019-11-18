@@ -2,12 +2,10 @@
 // See LICENSE.txt for license information.
 
 // ***************************************************************
-// - [#] indicates a test step (e.g. 1. Go to a page)
+// - [#] indicates a test step (e.g. # Go to a page)
 // - [*] indicates an assertion (e.g. * Check the title)
 // - Use element ID when selecting an element. Create one if none.
 // ***************************************************************
-
-/*eslint max-nested-callbacks: ["error", 4]*/
 
 describe('Message', () => {
     it('M13326 Text in bullet points is the same size as text above and below it', () => {

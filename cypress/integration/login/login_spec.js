@@ -2,17 +2,24 @@
 // See LICENSE.txt for license information.
 
 // ***************************************************************
-// - [#] indicates a test step (e.g. 1. Go to a page)
+// - [#] indicates a test step (e.g. # Go to a page)
 // - [*] indicates an assertion (e.g. * Check the title)
 // - Use element ID when selecting an element. Create one if none.
 // ***************************************************************
 
-/* eslint max-nested-callbacks: ["error", 4] */
+import users from '../../fixtures/users.json';
 
 let config;
 
 describe('Login page', () => {
     before(() => {
+        // Disable other auth options
+        const newSettings = {
+            Office365Settings: {Enable: false},
+            LdapSettings: {Enable: false},
+        };
+        cy.apiUpdateConfig(newSettings);
+
         cy.apiGetConfig().then((response) => {
             config = response.body;
         });
@@ -36,6 +43,7 @@ describe('Login page', () => {
         cy.get('#login_section').should('be.visible');
         cy.get('#site_name').should('contain', config.TeamSettings.SiteName);
         cy.get('#site_description').should('contain', 'All team communication in one place, searchable and accessible anywhere');
+        cy.get('#loginId').should('be.visible');
         cy.get('#loginId').
             should('be.visible').
             and(($loginTextbox) => {
@@ -67,11 +75,13 @@ describe('Login page', () => {
     });
 
     it('should login then logout by user-1', () => {
+        const user = users['user-1'];
+
         // # Enter "user-1" on Email or Username input box
-        cy.get('#loginId').should('be.visible').type('user-1');
+        cy.get('#loginId').should('be.visible').type(user.username);
 
         // # Enter "user-1" on "Password" input box
-        cy.get('#loginPassword').should('be.visible').type('user-1');
+        cy.get('#loginPassword').should('be.visible').type(user.password);
 
         // # Click "Sign in" button
         cy.get('#loginButton').should('be.visible').click();

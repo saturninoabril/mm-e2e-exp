@@ -127,6 +127,26 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+  test_enterprise:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/enterprise
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/enterprise/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
   test_integrations:
     working_directory: ~/tmp
     docker:
@@ -141,6 +161,46 @@ jobs:
       - run:
           name: Running cypress tests
           command: $(npm bin)/cypress run --spec 'cypress/integration/integrations/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_interactive_dialog:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/interactive_dialog
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/interactive_dialog/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_interactive_menu:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/interactive_menu
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/interactive_menu/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
@@ -167,7 +227,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-  test_markdown_image:
+  test_markdown:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -177,17 +237,17 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la cypress
-      - run: ls -la cypress/integration/markdown/markdown_image_spec.js
+      - run: ls -la cypress/integration/markdown
       - run:
           name: Running cypress tests
-          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/markdown_image_spec.js'
+          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/**/*
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-  test_markdown_text:
+  test_messaging:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -197,10 +257,30 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: ls -la cypress
-      - run: ls -la cypress/integration/markdown/markdown_text_spec.js
+      - run: ls -la cypress/integration/messaging
       - run:
           name: Running cypress tests
-          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/markdown_text_spec.js'
+          command: $(npm bin)/cypress run --spec 'cypress/integration/messaging/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_multi_team:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/multi_team
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/multi_team/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
@@ -221,6 +301,26 @@ jobs:
       - run:
           name: Running cypress tests
           command: $(npm bin)/cypress run --spec 'cypress/integration/onboarding/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test_plugins:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/plugins
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/plugins/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
@@ -327,6 +427,26 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+  test_widgets:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration/widgets
+      - run:
+          name: Running cypress tests
+          command: $(npm bin)/cypress run --spec 'cypress/integration/widgets/**/*'
+          environment:
+            CYPRESS_baseUrl: https://cypress.test.mattermost.com
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
 workflows:
   version: 2
@@ -342,10 +462,7 @@ workflows:
       - test_at_mentions:
           requires:
             - test_search
-      - test_markdown_text:
-          requires:
-            - test_at_mentions
-      - test_markdown_image:
+      - test_markdown:
           requires:
             - test_at_mentions
       - test_team:
@@ -376,5 +493,26 @@ workflows:
           requires:
             - test_team
       - test_post_header:
+          requires:
+            - test_team
+      - test_enterprise:
+          requires:
+            - test_team
+      - test_interactive_dialog:
+          requires:
+            - test_team
+      - test_interactive_menu:
+          requires:
+            - test_team
+      - test_messaging:
+          requires:
+            - test_team
+      - test_multi_team:
+          requires:
+            - test_team
+      - test_plugins:
+          requires:
+            - test_team
+      - test_widgets:
           requires:
             - test_team

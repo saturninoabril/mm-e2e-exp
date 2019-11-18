@@ -2,12 +2,10 @@
 // See LICENSE.txt for license information.
 
 // ***************************************************************
-// - [#] indicates a test step (e.g. 1. Go to a page)
+// - [#] indicates a test step (e.g. # Go to a page)
 // - [*] indicates an assertion (e.g. * Check the title)
 // - Use element ID when selecting an element. Create one if none.
 // ***************************************************************
-
-/* eslint max-nested-callbacks: ["error", 4] */
 
 // helper function to count the lines in a block of text by wrapping each word in a span and finding where the text breaks the line
 function getLines(e) {
@@ -50,31 +48,27 @@ function getLines(e) {
 
 describe('System Message', () => {
     before(() => {
-        // # Login and go to /
+        // # Login and and set user preference
         cy.apiLogin('user-1');
-        cy.visit('/');
+        cy.apiSaveTeammateNameDisplayPreference('username');
 
-        cy.getCookie('MMUSERID').then((cookie) => {
-            const preference = {
-                user_id: cookie.value,
-                category: 'display_settings',
-                name: 'name_format',
-                value: 'username',
-            };
-
-            cy.apiSaveUserPreference([preference]);
+        // # Create new test team
+        cy.apiCreateTeam('test-team', 'Test Team').then((response) => {
+            cy.visit(`/${response.body.name}`);
         });
     });
 
     it('MM-14636 - Validate that system message is wrapping properly', () => {
+        const newHeader = `${Date.now()} newheader`;
+
         // # Update channel header textbox
-        cy.updateChannelHeader('> newheader');
+        cy.updateChannelHeader(`> ${newHeader}`);
 
         // * Check the status update
         cy.getLastPost().
             should('contain', 'System').
-            and('contain', '@user-1 updated the channel header from:').
-            and('contain', 'newheader');
+            and('contain', '@user-1 updated the channel header to:').
+            and('contain', newHeader);
 
         const validateSingle = (desc) => {
             const lines = getLines(desc.find('p').last());
@@ -84,13 +78,15 @@ describe('System Message', () => {
         cy.getLastPost().then(validateSingle);
 
         // # Update the status to a long string
-        cy.updateChannelHeader('>' + ' newheader'.repeat(20));
+        cy.updateChannelHeader('> ' + newHeader.repeat(20));
 
         // * Check that the status is updated and is spread on more than one line
         cy.getLastPost().
             should('contain', 'System').
             and('contain', '@user-1 updated the channel header from:').
-            and('contain', ' newheader'.repeat(20));
+            and('contain', newHeader).
+            and('contain', 'to:').
+            and('contain', newHeader.repeat(20));
 
         const validateMulti = (desc) => {
             const lines = getLines(desc.find('p').last());

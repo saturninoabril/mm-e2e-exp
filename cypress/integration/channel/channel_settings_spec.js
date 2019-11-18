@@ -3,12 +3,11 @@
 // See LICENSE.txt for license information.
 
 // ***************************************************************
-// - [#] indicates a test step (e.g. 1. Go to a page)
+// - [#] indicates a test step (e.g. # Go to a page)
 // - [*] indicates an assertion (e.g. * Check the title)
 // - Use element ID when selecting an element. Create one if none.
 // ***************************************************************
 
-/* eslint-disable max-nested-callbacks */
 describe('Channel Settings', () => {
     before(() => {
         // # Go to Main Channel View with "user-1"
@@ -25,7 +24,7 @@ describe('Channel Settings', () => {
         });
 
         // add a direct message incase there is not one
-        cy.get('#directChannel button').click();
+        cy.get('#addDirectChannel').click();
         cy.get('.more-modal__row.clickable').first().click();
         cy.get('#saveItems').click();
 
