@@ -163,6 +163,7 @@ jobs:
           command: $(npm bin)/cypress run --spec 'cypress/integration/integrations/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
+            CYPRESS_webhookBaseUrl: http://localhost:3000
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -183,6 +184,7 @@ jobs:
           command: $(npm bin)/cypress run --spec 'cypress/integration/interactive_dialog/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
+            CYPRESS_webhookBaseUrl: http://localhost:3000
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -203,6 +205,7 @@ jobs:
           command: $(npm bin)/cypress run --spec 'cypress/integration/interactive_menu/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
+            CYPRESS_webhookBaseUrl: http://localhost:3000
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -443,6 +446,7 @@ jobs:
           command: $(npm bin)/cypress run --spec 'cypress/integration/widgets/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
+            CYPRESS_storybookUrl: https://alpha-storybook.devops.mattermost.com/master/index.html
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -453,9 +457,15 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_account_settings:
+      - test_markdown:
           requires:
             - build
+      - test_messaging:
+          requires:
+            - test_markdown
+      - test_messaging:
+          requires:
+            - test_markdown
       - test_search:
           requires:
             - test_account_settings
@@ -465,9 +475,6 @@ workflows:
       - test_system_console:
           requires:
             - test_at_mentions
-      - test_markdown:
-          requires:
-            - test_system_console
       - test_team:
           requires:
             - test_system_console
@@ -502,9 +509,6 @@ workflows:
           requires:
             - test_onboarding
       - test_interactive_menu:
-          requires:
-            - test_onboarding
-      - test_messaging:
           requires:
             - test_onboarding
       - test_multi_team:
