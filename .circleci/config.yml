@@ -461,7 +461,7 @@ workflows:
             - test_account_settings
       - test_at_mentions:
           requires:
-            - test_at_mentions
+            - test_search
       - test_system_console:
           requires:
             - test_at_mentions
