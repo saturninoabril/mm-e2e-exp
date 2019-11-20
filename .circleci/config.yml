@@ -463,9 +463,9 @@ workflows:
       - test_messaging:
           requires:
             - test_markdown
-      - test_messaging:
+      - test_account_settings:
           requires:
-            - test_markdown
+            - test_messaging
       - test_search:
           requires:
             - test_account_settings
