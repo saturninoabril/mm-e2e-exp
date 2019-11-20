@@ -479,40 +479,40 @@ workflows:
             - test_system_console
       - test_channel:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_email:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_emoji:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_integrations:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_login:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_post_header:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_enterprise:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_interactive_dialog:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_interactive_menu:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_messaging:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_multi_team:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_plugins:
           requires:
-            - test_signin_authentication
+            - test_onboarding
       - test_widgets:
           requires:
-            - test_signin_authentication
+            - test_onboarding
