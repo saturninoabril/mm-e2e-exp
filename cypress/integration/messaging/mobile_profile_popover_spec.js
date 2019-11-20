@@ -18,7 +18,7 @@ describe('Profile popover', () => {
         cy.postMessage('Test message');
     });
 
-    it('M18715 Profile popover should render (standard mode)', () => {
+    it.skip('M18715 Profile popover should render (standard mode)', () => {
         // # Setting posts to standard mode
         cy.apiSaveMessageDisplayPreference();
         cy.getLastPostId().then((postId) => {
@@ -34,7 +34,7 @@ describe('Profile popover', () => {
         });
     });
 
-    it('M18715 Profile popover should render (compact mode)', () => {
+    it.skip('M18715 Profile popover should render (compact mode)', () => {
         // # Setting posts to compact mode
         cy.apiSaveMessageDisplayPreference('compact');
         cy.getLastPostId().then((postId) => {
