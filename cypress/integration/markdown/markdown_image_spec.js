@@ -72,8 +72,10 @@ describe('Markdown', () => {
         cy.getLastPostId().then((postId) => {
             // # Get the image and simulate a click.
             cy.get(`#postMessageText_${postId}`).find('img.markdown-inline-img').
-                should('have.css', 'height', '143px').
-                and('have.css', 'width', '894px').
+                and((inlineImg) => {
+                    expect(inlineImg.height()).to.be.closeTo(143, 2);
+                    expect(inlineImg.width()).to.be.closeTo(894, 2);
+                }).
                 click();
 
             // * Verify that the preview modal opens

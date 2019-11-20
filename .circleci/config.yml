@@ -240,7 +240,7 @@ jobs:
       - run: ls -la cypress/integration/markdown
       - run:
           name: Running cypress tests
-          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/**/*
+          command: $(npm bin)/cypress run --spec 'cypress/integration/markdown/**/*'
           environment:
             CYPRESS_baseUrl: https://cypress.test.mattermost.com
       - store_artifacts:
@@ -479,40 +479,40 @@ workflows:
             - test_at_mentions
       - test_channel:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_email:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_emoji:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_integrations:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_login:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_post_header:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_enterprise:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_interactive_dialog:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_interactive_menu:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_messaging:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_multi_team:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_plugins:
           requires:
-            - test_team
+            - test_signin_authentication
       - test_widgets:
           requires:
-            - test_team
+            - test_signin_authentication
