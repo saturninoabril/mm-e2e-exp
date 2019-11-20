@@ -30,7 +30,9 @@ describe('Post search display', () => {
 
         // # click on searchbox
         // cy.get('#searchbarContainer').should('be.visible').click();
-        cy.get('.search-bar__container').last().should('be.visible').click();
+        cy.get('.search-bar__container').last().should('be.visible').within(() => {
+            cy.get('#searchBox').click();
+        });
 
         // # check the contents in search options
         cy.get('#searchbar-help-popup').within(() => {
