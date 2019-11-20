@@ -461,22 +461,22 @@ workflows:
             - test_account_settings
       - test_at_mentions:
           requires:
-            - test_search
-      - test_markdown:
-          requires:
-            - test_at_mentions
-      - test_team:
-          requires:
-            - test_at_mentions
-      - test_onboarding:
-          requires:
             - test_at_mentions
       - test_system_console:
           requires:
             - test_at_mentions
+      - test_markdown:
+          requires:
+            - test_system_console
+      - test_team:
+          requires:
+            - test_system_console
+      - test_onboarding:
+          requires:
+            - test_system_console
       - test_signin_authentication:
           requires:
-            - test_at_mentions
+            - test_system_console
       - test_channel:
           requires:
             - test_signin_authentication
