@@ -21,19 +21,16 @@ describe('Post search display', () => {
         cy.get('#searchBox').type(searchWord).type('{enter}').should('have.value', searchWord);
 
         // # click on "x" displayed on searchbox
-        cy.get('#searchClearButton').click();
+        cy.get('#searchClearButton').then((el) => {
+            el.click();
+        });
 
         // # RHS should be visible with search results
         cy.get('#search-items-container').should('be.visible');
 
-        // # focused element searchbox should be visible
-        cy.get('#searchBox').should('be.visible');
-
         // # click on searchbox
-        cy.get('#searchBox').click();
-
-        // # search options menu is visible
-        cy.get('#searchbar-help-popup').should('be.visible');
+        // cy.get('#searchbarContainer').should('be.visible').click();
+        cy.get('.search-bar__container').last().should('be.visible').click();
 
         // # check the contents in search options
         cy.get('#searchbar-help-popup').within(() => {
