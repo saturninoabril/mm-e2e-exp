@@ -457,9 +457,21 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_markdown:
+      - test_team:
           requires:
             - build
+      - test_onboarding:
+          requires:
+            - test_team
+      - test_signin_authentication:
+          requires:
+            - test_onboarding
+      - test_channel:
+          requires:
+            - test_signin_authentication
+      - test_markdown:
+          requires:
+            - test_channel
       - test_messaging:
           requires:
             - test_markdown
@@ -475,21 +487,9 @@ workflows:
       - test_system_console:
           requires:
             - test_at_mentions
-      - test_team:
-          requires:
-            - test_system_console
-      - test_onboarding:
-          requires:
-            - test_team
-      - test_signin_authentication:
-          requires:
-            - test_onboarding
-      - test_channel:
-          requires:
-            - test_signin_authentication
       - test_email:
           requires:
-            - test_channel
+            - test_system_console
       - test_emoji:
           requires:
             - test_email
