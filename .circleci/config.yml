@@ -480,43 +480,43 @@ workflows:
             - test_system_console
       - test_onboarding:
           requires:
-            - test_system_console
+            - test_team
       - test_signin_authentication:
           requires:
-            - test_system_console
+            - test_onboarding
       - test_channel:
           requires:
-            - test_onboarding
+            - test_signin_authentication
       - test_email:
           requires:
-            - test_onboarding
+            - test_channel
       - test_emoji:
           requires:
-            - test_onboarding
+            - test_email
       - test_integrations:
           requires:
-            - test_onboarding
+            - test_emoji
       - test_login:
           requires:
-            - test_onboarding
+            - test_integrations
       - test_post_header:
           requires:
-            - test_onboarding
+            - test_login
       - test_enterprise:
           requires:
-            - test_onboarding
+            - test_post_header
       - test_interactive_dialog:
           requires:
-            - test_onboarding
+            - test_enterprise
       - test_interactive_menu:
           requires:
-            - test_onboarding
+            - test_interactive_dialog
       - test_multi_team:
           requires:
-            - test_onboarding
+            - test_interactive_menu
       - test_plugins:
           requires:
-            - test_onboarding
+            - test_multi_team
       - test_widgets:
           requires:
-            - test_onboarding
+            - test_plugins

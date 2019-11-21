@@ -29,11 +29,10 @@ describe('Search', () => {
         // # Post a message
         cy.postMessage(message);
 
-        //# Type "in:" text in search input
         cy.get('#searchBox').type('in:');
 
         //# Search group members in the menu
-        cy.findAllByTestId('listItem').contains(groupMembers.join(',')).click();cy.get('#search-autocomplete__popover').should('be.visible').within(() => {
+        cy.get('#search-autocomplete__popover').should('be.visible').within(() => {
             cy.findAllByTestId('listItem').contains(groupMembers.join(',')).click();
         });
 
