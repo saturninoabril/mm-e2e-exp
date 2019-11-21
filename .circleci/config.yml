@@ -457,9 +457,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test_team:
+      - test_plugins:
           requires:
             - build
+      - test_team:
+          requires:
+            - test_plugins
       - test_onboarding:
           requires:
             - test_team
@@ -514,9 +517,6 @@ workflows:
       - test_multi_team:
           requires:
             - test_interactive_menu
-      - test_plugins:
-          requires:
-            - test_multi_team
       - test_widgets:
           requires:
-            - test_plugins
+            - test_multi_team
